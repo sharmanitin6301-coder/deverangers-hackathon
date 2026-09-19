@@ -1866,6 +1866,299 @@
       background-color: var(--ink);
       color: var(--cream);
     }
+
+    /* MATCHING JOBS SECTION (LIVE ADZUNA INTEGRATION) */
+    .matching-jobs-section {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      border-top: 1.5px solid var(--ink);
+      padding-top: 24px;
+    }
+
+    .jobs-controls-grid {
+      display: grid;
+      grid-template-columns: 1.3fr 1fr auto;
+      gap: 12px;
+      align-items: flex-end;
+    }
+
+    @media (max-width: 768px) {
+      .jobs-controls-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .jobs-input-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .jobs-input-label {
+      font-size: 10px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--muted);
+      font-weight: 700;
+    }
+
+    .jobs-text-input {
+      background-color: var(--paper);
+      border: 1.5px solid var(--ink);
+      color: var(--ink);
+      padding: 10px 14px;
+      font-family: 'Inter', sans-serif;
+      font-size: 13.5px;
+      outline: none;
+      border-radius: 0 !important;
+      transition: border-color 0.2s;
+    }
+
+    .jobs-text-input:focus {
+      outline: 2px solid var(--ink) !important;
+    }
+
+    .find-jobs-btn {
+      font-family: 'Martian Mono', monospace;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      background-color: var(--paper);
+      border: 1.5px solid var(--ink);
+      color: var(--ink);
+      padding: 11px 20px;
+      cursor: pointer;
+      border-radius: 0 !important;
+      transition: all 0.2s;
+      white-space: nowrap;
+      height: 40px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .find-jobs-btn:hover:not(:disabled) {
+      background-color: var(--ink);
+      color: var(--cream);
+    }
+
+    .find-jobs-btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    .jobs-loading-container {
+      border: 1.5px dashed var(--ink);
+      padding: 20px;
+      background: var(--cream);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .jobs-cue-box {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      color: var(--ink);
+    }
+
+    .jobs-cue-spinner {
+      width: 12px;
+      height: 12px;
+      border: 2px solid var(--ink);
+      border-top-color: var(--red);
+      animation: spin 0.8s linear infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    .jobs-error-container {
+      border: 1.5px solid var(--red);
+      padding: 16px;
+      background-color: var(--paper);
+      color: var(--ink);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .jobs-error-summary {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--red);
+      letter-spacing: 0.14em;
+    }
+
+    .jobs-error-details {
+      font-size: 11px;
+      color: var(--ink);
+    }
+
+    .jobs-error-details summary {
+      cursor: pointer;
+      letter-spacing: 0.12em;
+      font-weight: 700;
+      color: var(--ink);
+      padding: 4px 0;
+    }
+
+    .jobs-error-pre {
+      font-family: 'Martian Mono', monospace;
+      font-size: 10px;
+      background: var(--cream);
+      padding: 10px;
+      margin-top: 6px;
+      border: 1px solid var(--hair);
+      white-space: pre-wrap;
+      word-break: break-word;
+      color: var(--ink);
+    }
+
+    .jobs-zero-container {
+      border: 1.5px dashed var(--ink);
+      padding: 24px;
+      text-align: center;
+      background-color: var(--paper);
+    }
+
+    .jobs-zero-text {
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .jobs-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .job-card-row {
+      border: 1.5px solid var(--ink);
+      background-color: var(--paper);
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      border-radius: 0 !important;
+      transition: border-color 0.2s;
+    }
+
+    .job-card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .job-card-title-group {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      flex: 1;
+    }
+
+    .job-card-title {
+      font-family: 'Anton', sans-serif;
+      font-size: 18px;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      color: var(--ink);
+    }
+
+    .job-card-meta {
+      font-family: 'Martian Mono', monospace;
+      font-size: 11px;
+      color: rgba(23, 23, 23, 0.6);
+      letter-spacing: 0.1em;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .job-card-meta .meta-company {
+      font-weight: 700;
+      color: var(--ink);
+    }
+
+    .job-card-badge {
+      font-family: 'Martian Mono', monospace;
+      font-size: 9.5px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      padding: 4px 8px;
+      border: 1.5px solid var(--ink);
+      background: var(--cream);
+      color: var(--ink);
+      white-space: nowrap;
+    }
+
+    .job-card-badge.high-match {
+      border-color: var(--red);
+      color: var(--red);
+      background: rgba(239, 73, 60, 0.06);
+    }
+
+    .job-card-body {
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      line-height: 1.5;
+      color: var(--ink);
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .job-card-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid var(--hair);
+      padding-top: 10px;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .job-skills-matched {
+      font-family: 'Martian Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      color: var(--ink);
+    }
+
+    .job-link-btn {
+      font-family: 'Martian Mono', monospace;
+      font-size: 10.5px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      text-decoration: none;
+      background-color: var(--paper);
+      border: 1.5px solid var(--ink);
+      color: var(--ink);
+      padding: 6px 14px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s;
+    }
+
+    .job-link-btn:hover {
+      background-color: var(--ink);
+      color: var(--cream);
+    }
   </style>
 </head>
 <body>
@@ -2492,7 +2785,57 @@
               </div>
             </div>
 
-            <!-- 5. Export Bar -->
+            <!-- 5. MATCHING JOBS (LIVE ADZUNA INTEGRATION) -->
+            <div class="matching-jobs-section" id="matchingJobsSection">
+              <div class="input-section-head font-furniture" style="border-bottom:none; padding-bottom:0;">
+                <span style="font-weight:700;">MATCHING JOBS // LIVE REQUISITIONS</span>
+                <span style="color:var(--muted);">ADZUNA MARKET INDEX</span>
+              </div>
+
+              <!-- Query & Location Controls -->
+              <div class="jobs-controls-grid">
+                <div class="jobs-input-group">
+                  <label for="jobQueryInput" class="jobs-input-label font-furniture">SEARCH REQUISITION</label>
+                  <input type="text" id="jobQueryInput" class="jobs-text-input" placeholder="e.g. Staff UI Engineer" />
+                </div>
+                <div class="jobs-input-group">
+                  <label for="jobLocationInput" class="jobs-input-label font-furniture">LOCATION (OPTIONAL)</label>
+                  <input type="text" id="jobLocationInput" class="jobs-text-input" placeholder="e.g. Bangalore, India (or leave blank for all)" />
+                </div>
+                <button type="button" id="findJobsBtn" class="find-jobs-btn font-furniture">
+                  FIND MATCHING JOBS
+                </button>
+              </div>
+
+              <!-- Loading State for Jobs -->
+              <div id="jobsLoadingState" class="jobs-loading-container" style="display:none;">
+                <div class="jobs-cue-box font-furniture">
+                  <div class="jobs-cue-spinner"></div>
+                  <span id="jobsLoadingText">QUERYING ADZUNA LIVE INDEX &amp; CROSS-MATCHING SKILLS...</span>
+                </div>
+              </div>
+
+              <!-- Error State for Jobs (Collapsed details) -->
+              <div id="jobsErrorState" class="jobs-error-container" style="display:none;">
+                <div class="jobs-error-summary font-furniture">ERROR: UNABLE TO FETCH LIVE LISTINGS FROM /api/jobs</div>
+                <details class="jobs-error-details">
+                  <summary class="font-furniture">VIEW DIAGNOSTIC DETAILS</summary>
+                  <div id="jobsErrorDetailsText" class="jobs-error-pre"></div>
+                </details>
+              </div>
+
+              <!-- Zero Results State -->
+              <div id="jobsZeroState" class="jobs-zero-container" style="display:none;">
+                <div class="jobs-zero-text font-furniture">NO LIVE LISTINGS FOUND MATCHING THIS REQUISITION AND LOCATION. TRY BROADENING THE SEARCH PARAMETERS.</div>
+              </div>
+
+              <!-- Job Results List -->
+              <div id="jobsListContainer" class="jobs-list" style="display:none;">
+                <!-- Generated Job Cards -->
+              </div>
+            </div>
+
+            <!-- 6. Export Bar -->
             <div class="artifact-export-bar">
               <div class="font-furniture" style="color:var(--muted);">EXPORT CANDIDATE DOSSIER AUDIT</div>
               <button type="button" class="export-btn" id="exportReportBtn">EXPORT REPORT (.MD)</button>
@@ -4366,6 +4709,212 @@ Nice To Have:
       if (p2Body) p2Body.textContent = data.plan.step2Body;
       if (p3Title) p3Title.textContent = data.plan.step3Title;
       if (p3Body) p3Body.textContent = data.plan.step3Body;
+
+      // Initialize Matching Jobs Requisition Input
+      const jobQueryInput = document.getElementById('jobQueryInput');
+      if (jobQueryInput && data.roleTitle) {
+        jobQueryInput.value = data.roleTitle;
+      }
+      resetJobsUI();
+
+      // Check if jobs were previously fetched for this requisition
+      try {
+        const cachedJobsStr = localStorage.getItem('gapline_last_jobs');
+        if (cachedJobsStr) {
+          const cached = JSON.parse(cachedJobsStr);
+          if (cached && cached.query && cached.query.toLowerCase() === (data.roleTitle || '').toLowerCase() && cached.jobs && cached.jobs.length > 0) {
+            renderMatchingJobsList(cached.jobs);
+          }
+        }
+      } catch (e) {}
+    }
+
+    /* =============================================================
+       MATCHING JOBS: ADZUNA API INTEGRATION & RELEVANCE MATCHER
+       ============================================================= */
+    const jobQueryInput = document.getElementById('jobQueryInput');
+    const jobLocationInput = document.getElementById('jobLocationInput');
+    const findJobsBtn = document.getElementById('findJobsBtn');
+    const jobsLoadingState = document.getElementById('jobsLoadingState');
+    const jobsErrorState = document.getElementById('jobsErrorState');
+    const jobsErrorDetailsText = document.getElementById('jobsErrorDetailsText');
+    const jobsZeroState = document.getElementById('jobsZeroState');
+    const jobsListContainer = document.getElementById('jobsListContainer');
+
+    function resetJobsUI() {
+      if (jobsLoadingState) jobsLoadingState.style.display = 'none';
+      if (jobsErrorState) jobsErrorState.style.display = 'none';
+      if (jobsZeroState) jobsZeroState.style.display = 'none';
+      if (jobsListContainer) {
+        jobsListContainer.style.display = 'none';
+        jobsListContainer.innerHTML = '';
+      }
+    }
+
+    async function searchMatchingJobs() {
+      if (!jobQueryInput) return;
+      const query = jobQueryInput.value.trim();
+      const loc = jobLocationInput ? jobLocationInput.value.trim() : '';
+
+      if (!query) {
+        jobQueryInput.focus();
+        return;
+      }
+
+      resetJobsUI();
+      if (jobsLoadingState) jobsLoadingState.style.display = 'flex';
+      if (findJobsBtn) findJobsBtn.disabled = true;
+
+      try {
+        const params = new URLSearchParams({
+          query: query
+        });
+        if (loc) params.append('location', loc);
+
+        const res = await fetch(`/api/jobs?${params.toString()}`);
+        let data = null;
+        try {
+          data = await res.json();
+        } catch (jsonErr) {
+          data = { error: 'Invalid JSON Response', message: 'Failed to parse JSON response from /api/jobs' };
+        }
+
+        if (jobsLoadingState) jobsLoadingState.style.display = 'none';
+        if (findJobsBtn) findJobsBtn.disabled = false;
+
+        if (!res.ok || !data || !data.success) {
+          const errTitle = (data && data.error) || `HTTP ${res.status}`;
+          const errMsg = (data && data.message) || 'Unable to fetch jobs from server.';
+          const errDetails = (data && data.details) || JSON.stringify(data, null, 2);
+
+          if (jobsErrorState) {
+            jobsErrorState.style.display = 'flex';
+            if (jobsErrorDetailsText) {
+              jobsErrorDetailsText.textContent = `ENDPOINT: /api/jobs?${params.toString()}\nSTATUS: ${res.status} (${errTitle})\nMESSAGE: ${errMsg}\n\nDETAILS:\n${typeof errDetails === 'object' ? JSON.stringify(errDetails, null, 2) : errDetails}`;
+            }
+          }
+          return;
+        }
+
+        const rawJobs = data.jobs || [];
+        if (rawJobs.length === 0) {
+          if (jobsZeroState) jobsZeroState.style.display = 'block';
+          return;
+        }
+
+        // Cross-match each listing against target taxonomy and candidate matched skills
+        const candidateMatched = (currentReportData && currentReportData.matchedSkills) || [];
+        const allTaxonomy = CORE_TAXONOMY;
+
+        const evaluatedJobs = rawJobs.map(job => {
+          const combinedText = `${job.title} ${job.description}`.toLowerCase();
+          const matchedSkillsList = [];
+
+          allTaxonomy.forEach(tax => {
+            for (let alias of tax.aliases) {
+              const reg = new RegExp('\\b' + alias.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '\\b', 'i');
+              if (reg.test(combinedText)) {
+                matchedSkillsList.push(tax.name);
+                break;
+              }
+            }
+          });
+
+          // Intersect with candidate's proven skills
+          const candidateIntersection = matchedSkillsList.filter(s => candidateMatched.includes(s));
+          const scoreRank = candidateIntersection.length * 10 + matchedSkillsList.length;
+
+          return {
+            ...job,
+            matchedSkillsList,
+            candidateIntersection,
+            scoreRank
+          };
+        });
+
+        // Sort by candidate's matched skills descending
+        evaluatedJobs.sort((a, b) => b.scoreRank - a.scoreRank);
+        const top10 = evaluatedJobs.slice(0, 10);
+
+        renderMatchingJobsList(top10);
+
+        // Cache in memory and localStorage
+        try {
+          localStorage.setItem('gapline_last_jobs', JSON.stringify({
+            query: query,
+            location: loc,
+            jobs: top10,
+            timestamp: Date.now()
+          }));
+        } catch (e) {}
+
+      } catch (networkErr) {
+        if (jobsLoadingState) jobsLoadingState.style.display = 'none';
+        if (findJobsBtn) findJobsBtn.disabled = false;
+
+        if (jobsErrorState) {
+          jobsErrorState.style.display = 'flex';
+          if (jobsErrorDetailsText) {
+            jobsErrorDetailsText.textContent = `FETCH ERROR: ${networkErr.message}\n\nVerify that /api/jobs is reachable and that ADZUNA_APP_ID and ADZUNA_APP_KEY are configured.`;
+          }
+        }
+      }
+    }
+
+    function renderMatchingJobsList(jobs) {
+      if (!jobsListContainer) return;
+      jobsListContainer.innerHTML = '';
+      jobsListContainer.style.display = 'flex';
+
+      jobs.forEach((job) => {
+        const row = document.createElement('div');
+        row.className = 'job-card-row';
+
+        const matchCount = job.candidateIntersection ? job.candidateIntersection.length : 0;
+        const totalReq = job.matchedSkillsList ? job.matchedSkillsList.length : 0;
+        const badgeClass = matchCount >= 3 ? 'job-card-badge high-match' : 'job-card-badge';
+        const badgeText = matchCount > 0 ? `${matchCount} MATCHED SKILLS` : (totalReq > 0 ? `${totalReq} SKILLS DETECTED` : 'GENERAL MATCH');
+
+        let salaryStr = '';
+        if (job.salary_min || job.salary_max) {
+          if (job.salary_min && job.salary_max && job.salary_min !== job.salary_max) {
+            salaryStr = ` • SALARY: ₹${Number(job.salary_min).toLocaleString()} – ₹${Number(job.salary_max).toLocaleString()}`;
+          } else if (job.salary_min) {
+            salaryStr = ` • FROM ₹${Number(job.salary_min).toLocaleString()}`;
+          }
+        }
+
+        const skillsPillText = (job.candidateIntersection && job.candidateIntersection.length > 0)
+          ? `MATCHED IN DOSSIER: ${job.candidateIntersection.slice(0, 4).join(', ').toUpperCase()}`
+          : (job.matchedSkillsList && job.matchedSkillsList.length > 0 ? `REQUISITION TOOLS: ${job.matchedSkillsList.slice(0, 4).join(', ').toUpperCase()}` : 'SKILL MATRIX EVALUATED');
+
+        row.innerHTML = `
+          <div class="job-card-top">
+            <div class="job-card-title-group">
+              <div class="job-card-title">${job.title}</div>
+              <div class="job-card-meta">
+                <span class="meta-company">${job.company}</span>
+                <span>•</span>
+                <span>${job.location}${salaryStr}</span>
+              </div>
+            </div>
+            <div class="${badgeClass}">${badgeText}</div>
+          </div>
+          ${job.description ? `<div class="job-card-body">${job.description}</div>` : ''}
+          <div class="job-card-bottom">
+            <div class="job-skills-matched">${skillsPillText}</div>
+            <a href="${job.url}" target="_blank" rel="noopener noreferrer" class="job-link-btn">
+              OPEN LISTING ↗
+            </a>
+          </div>
+        `;
+
+        jobsListContainer.appendChild(row);
+      });
+    }
+
+    if (findJobsBtn) {
+      findJobsBtn.addEventListener('click', searchMatchingJobs);
     }
 
     // SAMPLE PRESETS WIRING
@@ -4435,9 +4984,13 @@ Nice To Have:
           jdTextarea.value = '';
           if (jdCharCount) jdCharCount.textContent = '0 CHARACTERS';
         }
+        if (jobQueryInput) jobQueryInput.value = '';
+        if (jobLocationInput) jobLocationInput.value = '';
+        resetJobsUI();
 
         try {
           localStorage.removeItem('gapline_last_analysis');
+          localStorage.removeItem('gapline_last_jobs');
         } catch (e) {}
 
         showEmptyState();
