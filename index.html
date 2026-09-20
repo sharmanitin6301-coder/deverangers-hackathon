@@ -310,7 +310,6 @@
       opacity: var(--hero-type-alpha);
       transform-origin: center center;
       will-change: transform, opacity;
-      transition: transform 0.08s ease-out, opacity 0.08s ease-out;
     }
 
     .hero-poster-line-1 {
@@ -344,7 +343,6 @@
       border-top: 1px solid var(--hair-loam);
       padding-top: 14px;
       opacity: calc(1 - var(--page-progress) * 3);
-      transition: opacity 0.1s linear;
     }
 
     .hero-meta-item {
@@ -391,7 +389,6 @@
       transform: scale(var(--manifesto-scale));
       transform-origin: center center;
       will-change: transform;
-      transition: transform 0.08s ease-out;
     }
 
     .manifesto-base-sentence {
@@ -400,7 +397,7 @@
       letter-spacing: -0.02em;
       line-height: 0.96;
       font-size: clamp(20px, min(4.2vw, 5.8vh), 52px);
-      color: rgba(23, 23, 23, 0.34);
+      color: rgba(23, 23, 23, 0.30);
       display: block;
       width: 100%;
       user-select: none;
@@ -420,13 +417,129 @@
       line-height: 0.96;
       font-size: clamp(20px, min(4.2vw, 5.8vh), 52px);
       color: var(--ink);
-      clip-path: inset(calc(100% - var(--manifesto-wipe)) -12px -12px -12px -12px);
-      will-change: clip-path;
+      -webkit-clip-path: inset(calc(100% - var(--manifesto-wipe)) 0 0 0);
+      clip-path: inset(calc(100% - var(--manifesto-wipe)) 0 0 0);
+      will-change: clip-path, -webkit-clip-path;
       pointer-events: none;
       user-select: none;
       word-break: normal;
       overflow-wrap: normal;
-      transition: clip-path 0.05s linear;
+    }
+
+    /* -------------------------------------------------------------
+       UNPINNED QUOTE ROTATOR BAND (BETWEEN STAGE 2 & STAGE 3)
+       ------------------------------------------------------------- */
+    .quote-rotator-band {
+      background-color: var(--cream);
+      color: var(--ink);
+      border-top: 1px solid var(--hair);
+      border-bottom: 1px solid var(--hair);
+      padding: 104px 24px;
+      position: relative;
+      z-index: 3;
+    }
+
+    .quote-rotator-container {
+      max-width: 860px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 28px;
+    }
+
+    .quote-rotator-head {
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .quote-indicator-index {
+      padding: 4px 10px;
+      background: var(--paper);
+      border: 1px solid var(--hair);
+    }
+
+    .quote-rotator-card {
+      position: relative;
+      width: 100%;
+      min-height: 180px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 24px 16px;
+      outline: none;
+      cursor: default;
+    }
+
+    .quote-rotator-card:focus-visible {
+      outline: 1.5px solid var(--ink);
+      outline-offset: 4px;
+    }
+
+    .quote-text {
+      font-family: 'Inter', sans-serif;
+      font-style: italic;
+      font-weight: 500;
+      font-size: clamp(24px, 3.4vw, 38px);
+      line-height: 1.25;
+      letter-spacing: -0.025em;
+      color: var(--ink);
+      max-width: 20ch;
+      margin: 0 auto;
+      text-align: center;
+      opacity: 1;
+      transform: translateY(0);
+      transition: opacity 0.5s var(--ease-default), transform 0.5s var(--ease-default);
+      will-change: opacity, transform;
+    }
+
+    .quote-author {
+      font-family: 'Martian Mono', monospace;
+      font-style: normal;
+      font-size: clamp(11.5px, 1.3vw, 13.5px);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-top: 24px;
+      display: inline-block;
+      opacity: 1;
+      transform: translateY(0);
+      transition: opacity 0.5s var(--ease-default), transform 0.5s var(--ease-default);
+      will-change: opacity, transform;
+    }
+
+    .quote-rotator-card.is-fading .quote-text,
+    .quote-rotator-card.is-fading .quote-author {
+      opacity: 0;
+      transform: translateY(8px);
+    }
+
+    .quote-rotator-pagers {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      justify-content: center;
+      margin-top: 4px;
+    }
+
+    .quote-dot {
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+      padding: 2px 6px;
+      border: 1px solid transparent;
+      transition: all 0.25s var(--ease-default);
+      user-select: none;
+    }
+
+    .quote-dot.active {
+      color: var(--ink);
+      border-color: var(--ink);
+      background-color: var(--paper);
     }
 
     /* -------------------------------------------------------------
@@ -436,7 +549,7 @@
       height: 340svh;
       background-color: var(--cream);
       color: var(--ink);
-      z-index: 3;
+      z-index: 4;
     }
 
     #stage-3 .stage-inner {
@@ -496,7 +609,6 @@
       gap: 22px;
       transform: translateX(calc(-1 * var(--rail-x)));
       will-change: transform;
-      transition: transform 0.04s linear;
     }
 
     .rail-card {
@@ -583,7 +695,7 @@
       height: 420svh;
       background-color: var(--loam);
       color: var(--cream-loam);
-      z-index: 4;
+      z-index: 5;
     }
 
     #stage-4 .stage-inner {
@@ -607,7 +719,6 @@
       gap: 16px;
       transform: translateX(var(--report-copy-x));
       will-change: transform;
-      transition: transform 0.08s ease-out;
       max-width: 520px;
     }
 
@@ -695,7 +806,6 @@
       opacity: var(--report-alpha);
       transform: translateY(var(--report-enter)) scale(var(--report-scale));
       will-change: transform, opacity;
-      transition: transform 0.08s ease-out, opacity 0.08s ease-out;
     }
 
     .artifact-card {
@@ -725,7 +835,6 @@
       pointer-events: none;
       transform: translateY(calc(var(--report-cut) * 580px));
       opacity: calc(var(--report-cut) * 1.5);
-      transition: transform 0.05s linear;
     }
 
     .artifact-head {
@@ -810,7 +919,7 @@
       height: 300svh;
       background-color: var(--cream);
       color: var(--ink);
-      z-index: 5;
+      z-index: 6;
     }
 
     #stage-5 .stage-inner {
@@ -855,17 +964,21 @@
       gap: 36px;
     }
 
-    .plan-header-area {
+    .plan-header {
       display: flex;
       flex-direction: column;
-      gap: 8px;
+      gap: 6px;
+    }
+
+    .plan-lead-label {
+      color: var(--muted);
     }
 
     .plan-main-title {
       font-family: 'Anton', sans-serif;
-      font-size: clamp(40px, 6.2vw, 92px);
+      font-size: clamp(36px, 5.2vw, 76px);
       letter-spacing: -0.035em;
-      line-height: 0.86;
+      line-height: 0.88;
       text-transform: uppercase;
       margin: 0;
     }
@@ -925,7 +1038,7 @@
       background-color: var(--cream);
       color: var(--ink);
       border-top: 1px solid var(--hair);
-      z-index: 30;
+      z-index: 10;
     }
 
     .band-container {
@@ -1011,6 +1124,101 @@
     .pricing-btn:hover {
       background-color: var(--ink);
       color: var(--paper);
+    }
+
+    /* Pricing honesty badge */
+    .pricing-disclaimer-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'Martian Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      background: var(--paper);
+      border: 1px solid var(--hair);
+      padding: 6px 12px;
+      margin-bottom: 4px;
+      width: fit-content;
+    }
+
+    .pricing-disclaimer-badge .badge-icon {
+      color: var(--red);
+      font-weight: 700;
+    }
+
+    /* Inline Notify Form in Table Cell */
+    .pricing-action-wrapper {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      min-height: 35px;
+    }
+
+    .pricing-notify-form {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .pricing-notify-input {
+      font-family: 'Martian Mono', monospace;
+      font-size: 11px;
+      padding: 7px 10px;
+      background: var(--cream);
+      border: 1.5px solid var(--ink);
+      color: var(--ink);
+      outline: none;
+      width: 180px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .pricing-notify-input:focus {
+      background: var(--paper);
+      border-color: var(--ink);
+    }
+
+    .pricing-notify-cancel {
+      font-family: 'Martian Mono', monospace;
+      font-size: 16px;
+      line-height: 1;
+      background: transparent;
+      border: none;
+      color: var(--muted);
+      cursor: pointer;
+      padding: 4px 6px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: color 0.15s var(--ease-default);
+    }
+
+    .pricing-notify-cancel:hover {
+      color: var(--ink);
+    }
+
+    .pricing-notify-confirm {
+      font-family: 'Martian Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink);
+      background: var(--paper);
+      border: 1px solid var(--ink);
+      padding: 8px 12px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .pricing-notify-confirm .mark-dot {
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      background-color: var(--red);
     }
 
     /* 2. Native <details> FAQ */
@@ -1153,6 +1361,16 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+      color: var(--muted-loam);
+    }
+
+    .footer-credit {
+      max-width: 1200px;
+      margin: 18px auto 0 auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
       color: var(--muted-loam);
     }
 
@@ -1373,13 +1591,19 @@
 
     .app-grid {
       display: grid;
-      grid-template-columns: minmax(360px, 1fr) minmax(440px, 1.25fr);
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
       gap: 36px;
       align-items: start;
+      transition: grid-template-columns 0.35s var(--ease-default);
+    }
+
+    .app-grid.has-report {
+      grid-template-columns: minmax(0, 0.62fr) minmax(0, 1.38fr);
     }
 
     @media (max-width: 960px) {
-      .app-grid {
+      .app-grid,
+      .app-grid.has-report {
         grid-template-columns: 1fr;
       }
       .app-header-strip {
@@ -1794,47 +2018,111 @@
       color: var(--cream);
     }
 
-    /* The Plan Section */
+    /* The 2-Week Plan Sequential Flowchart */
     .artifact-plan-section {
       display: flex;
       flex-direction: column;
-      gap: 14px;
-      border-top: 1px solid var(--hair);
+      gap: 16px;
+      border-top: 1.5px solid var(--ink);
       padding-top: 24px;
     }
 
-    .artifact-plan-grid {
-      display: grid;
-      grid-template-columns: 1fr;
+    .plan-flowchart-track {
+      display: flex;
+      flex-direction: row;
+      align-items: stretch;
+      justify-content: space-between;
       gap: 12px;
+      width: 100%;
+      box-sizing: border-box;
     }
 
-    .artifact-plan-card {
-      border: 1px solid var(--hair);
-      padding: 14px 16px;
+    .plan-flow-node {
+      flex: 1 1 0;
+      min-width: 0;
       background-color: var(--paper);
+      border: 1.5px solid var(--ink);
+      padding: 16px 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      position: relative;
+      box-sizing: border-box;
     }
 
-    .artifact-plan-card .plan-step-num {
+    .plan-node-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--hair);
+    }
+
+    .plan-node-badge {
+      font-family: 'Martian Mono', monospace;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 2px 7px;
+      background: var(--ink);
+      color: var(--paper);
+      letter-spacing: 0.08em;
+    }
+
+    .plan-node-phase {
       font-family: 'Martian Mono', monospace;
       font-size: 10px;
-      letter-spacing: 0.18em;
+      letter-spacing: 0.16em;
       color: var(--muted);
-      margin-bottom: 4px;
+      font-weight: 700;
+      text-transform: uppercase;
     }
 
-    .artifact-plan-card .plan-step-title {
+    .plan-node-title {
       font-family: 'Anton', sans-serif;
-      font-size: 16px;
+      font-size: clamp(15px, 1.5vw, 19px);
       letter-spacing: -0.02em;
-      margin-bottom: 6px;
+      line-height: 1.05;
+      text-transform: uppercase;
+      color: var(--ink);
+      margin: 2px 0 4px 0;
     }
 
-    .artifact-plan-card .plan-step-body {
+    .plan-node-body {
       font-family: 'Inter', sans-serif;
-      font-size: 13.5px;
+      font-size: 13px;
       line-height: 1.5;
       color: var(--ink);
+    }
+
+    .plan-flow-connector {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex: 0 0 32px;
+    }
+
+    .connector-arrow {
+      width: 32px;
+      height: 20px;
+      display: block;
+    }
+
+    @media (max-width: 700px) {
+      .plan-flowchart-track {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+      }
+      .plan-flow-connector {
+        flex: 0 0 28px;
+        height: 28px;
+        margin: 4px 0;
+      }
+      .connector-arrow {
+        transform: rotate(90deg);
+        width: 28px;
+        height: 18px;
+      }
     }
 
     /* Export Bar */
@@ -1877,22 +2165,21 @@
     }
 
     .jobs-controls-grid {
-      display: grid;
-      grid-template-columns: 1.3fr 1fr auto;
+      display: flex;
+      flex-wrap: wrap;
       gap: 12px;
       align-items: flex-end;
-    }
-
-    @media (max-width: 768px) {
-      .jobs-controls-grid {
-        grid-template-columns: 1fr;
-      }
+      width: 100%;
+      box-sizing: border-box;
     }
 
     .jobs-input-group {
+      flex: 1 1 200px;
+      min-width: 0;
       display: flex;
       flex-direction: column;
       gap: 6px;
+      box-sizing: border-box;
     }
 
     .jobs-input-label {
@@ -1913,6 +2200,9 @@
       outline: none;
       border-radius: 0 !important;
       transition: border-color 0.2s;
+      width: 100%;
+      box-sizing: border-box;
+      min-width: 0;
     }
 
     .jobs-text-input:focus {
@@ -1933,10 +2223,24 @@
       border-radius: 0 !important;
       transition: all 0.2s;
       white-space: nowrap;
-      height: 40px;
+      height: 42px;
       display: inline-flex;
       align-items: center;
       justify-content: center;
+      flex: 0 1 auto;
+      box-sizing: border-box;
+    }
+
+    @media (max-width: 768px) {
+      .jobs-controls-grid {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .jobs-input-group,
+      .find-jobs-btn {
+        flex: 1 1 100%;
+        width: 100%;
+      }
     }
 
     .find-jobs-btn:hover:not(:disabled) {
@@ -2222,6 +2526,31 @@
       </div>
     </section>
 
+    <!-- UNPINNED NORMAL-FLOW QUOTE ROTATOR (Between Stage 2 and Stage 3) -->
+    <section class="normal-band quote-rotator-band" id="quoteBand" data-theme="light" aria-label="Directives and Quotations">
+      <div class="band-container quote-rotator-container">
+        <div class="quote-rotator-head font-furniture" data-rev>
+          <span class="quote-indicator-index">[ 02.5 // VERBATIM DIRECTIVE ]</span>
+        </div>
+
+        <div class="quote-rotator-card" id="quoteCard" tabindex="0" role="region" aria-roledescription="quote-carousel" aria-label="Rotating Quotations" aria-live="polite">
+          <blockquote class="quote-text font-quote" id="quoteText">
+            &ldquo;Hire character. Train skill.&rdquo;
+          </blockquote>
+          <cite class="quote-author font-furniture" id="quoteAuthor">
+            — Peter Schutz
+          </cite>
+        </div>
+
+        <div class="quote-rotator-pagers font-furniture" id="quotePagers" aria-hidden="true">
+          <span class="quote-dot active" data-quote-index="0">01</span>
+          <span class="quote-dot" data-quote-index="1">02</span>
+          <span class="quote-dot" data-quote-index="2">03</span>
+          <span class="quote-dot" data-quote-index="3">04</span>
+        </div>
+      </div>
+    </section>
+
     <!-- STAGE 3: HORIZONTAL CARD RAIL (340svh, sticky inner on var(--cream)) -->
     <section class="stage" id="stage-3" data-theme="light">
       <div class="stage-inner">
@@ -2449,6 +2778,9 @@
     <section class="normal-band" id="pricingBand">
       <div class="band-container">
         <div class="band-head">
+          <div class="pricing-disclaimer-badge font-furniture" data-rev>
+            <span class="badge-icon">[!]</span> HACKATHON BUILD — ALL FEATURES SHOWN AT THE FREE TIER
+          </div>
           <div class="font-furniture" style="color:var(--muted);" data-rev>TIER ARCHITECTURE // SPEC.2026</div>
           <h2 class="band-title font-display">PRICING SPECIFICATION</h2>
         </div>
@@ -2479,7 +2811,19 @@
               <td data-rev>DEEP VECTOR MATRIX</td>
               <td data-rev>UNLIMITED</td>
               <td class="pricing-price-val" data-rev>$19 / MO</td>
-              <td data-rev><a href="#tool" class="pricing-btn" data-rev>UPGRADE TO PRO</a></td>
+              <td data-rev>
+                <div class="pricing-action-wrapper">
+                  <button type="button" class="pricing-btn" id="proNotifyBtn" data-rev>NOTIFY ME AT LAUNCH</button>
+                  <form class="pricing-notify-form" id="proNotifyForm" style="display: none;" onsubmit="handleProNotify(event)">
+                    <input type="email" class="pricing-notify-input font-furniture" id="proNotifyEmail" placeholder="DEV@DOMAIN.COM" required />
+                    <button type="submit" class="pricing-btn">SUBMIT</button>
+                    <button type="button" class="pricing-notify-cancel" id="proNotifyCancel" title="Cancel">&times;</button>
+                  </form>
+                  <div class="pricing-notify-confirm font-furniture" id="proNotifyConfirm" style="display: none;">
+                    <span class="mark-dot"></span> NOTED — WE&rsquo;LL BE IN TOUCH
+                  </div>
+                </div>
+              </td>
             </tr>
             <tr data-rev>
               <td class="pricing-tier-name font-display" data-rev>TEAM</td>
@@ -2487,7 +2831,7 @@
               <td data-rev>MULTI-REQUISITION BATCH</td>
               <td data-rev>CUSTOM TAXONOMY</td>
               <td class="pricing-price-val" data-rev>$89 / MO</td>
-              <td data-rev><a href="#tool" class="pricing-btn" data-rev>CONTACT SALES</a></td>
+              <td data-rev><a href="mailto:team@gapline.dev?subject=GAPLINE%20Team%20Inquiry" class="pricing-btn" data-rev>GET IN TOUCH</a></td>
             </tr>
           </tbody>
         </table>
@@ -2757,30 +3101,58 @@
               </div>
             </div>
 
-            <!-- 4. The 2-Week Plan (Stage 5 Spec) -->
+            <!-- 4. The 2-Week Plan Sequential Flowchart -->
             <div class="artifact-plan-section">
-              <div class="input-section-head font-furniture" style="border-bottom:none; padding-bottom:0;">
+              <div class="input-section-head font-furniture" style="border-bottom:none; padding-bottom:0;" data-rev>
                 <span style="font-weight:700;">TWO-WEEK REMEDIATION PLAN</span>
-                <span style="color:var(--muted);">EXECUTION STRATEGY</span>
+                <span style="color:var(--muted);">SEQUENTIAL FLOWCHART</span>
               </div>
 
-              <div class="artifact-plan-grid">
-                <div class="artifact-plan-card">
-                  <div class="plan-step-num">WEEK ONE // TARGET HIGH-FREQUENCY VOIDS</div>
-                  <div class="plan-step-title" id="planStep1Title">CLOSE THE TWO SKILLS THE POSTING NAMES TWICE</div>
-                  <div class="plan-step-body" id="planStep1Body">Focus immediately on the primary requisitions highlighted multiple times in the job posting.</div>
+              <div class="plan-flowchart-track">
+                <!-- Node 1: WEEK ONE -->
+                <div class="plan-flow-node" data-rev>
+                  <div class="plan-node-head font-furniture">
+                    <span class="plan-node-badge font-furniture">01</span>
+                    <span class="plan-node-phase">WEEK ONE</span>
+                  </div>
+                  <div class="plan-node-title font-display" id="planStep1Title">CLOSE THE TWO SKILLS THE POSTING NAMES TWICE</div>
+                  <div class="plan-node-body" id="planStep1Body">Focus immediately on the primary requisitions highlighted multiple times in the job posting.</div>
                 </div>
 
-                <div class="artifact-plan-card">
-                  <div class="plan-step-num">WEEK TWO // PROOF-OF-WORK DELIVERABLE</div>
-                  <div class="plan-step-title" id="planStep2Title">SHIP ONE ARTIFACT THAT PROVES THEM</div>
-                  <div class="plan-step-body" id="planStep2Body">Build and publish a public technical artifact proving hands-on proficiency in the missing core tools.</div>
+                <!-- Connector 1 -> 2 -->
+                <div class="plan-flow-connector" data-rev aria-hidden="true">
+                  <svg class="connector-arrow" viewBox="0 0 32 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <line x1="2" y1="10" x2="22" y2="10" stroke="var(--red)" stroke-width="2" stroke-dasharray="3 3" />
+                    <polygon points="20,5 30,10 20,15" fill="var(--red)" />
+                  </svg>
                 </div>
 
-                <div class="artifact-plan-card">
-                  <div class="plan-step-num">AFTER // RE-ENGAGEMENT</div>
-                  <div class="plan-step-title" id="planStep3Title">RESUBMIT WITH THE REWRITTEN LINES</div>
-                  <div class="plan-step-body" id="planStep3Body">Update resume bullets with quantified impact statements and resubmit through the direct recruiter portal.</div>
+                <!-- Node 2: WEEK TWO -->
+                <div class="plan-flow-node" data-rev>
+                  <div class="plan-node-head font-furniture">
+                    <span class="plan-node-badge font-furniture">02</span>
+                    <span class="plan-node-phase">WEEK TWO</span>
+                  </div>
+                  <div class="plan-node-title font-display" id="planStep2Title">SHIP ONE ARTIFACT THAT PROVES THEM</div>
+                  <div class="plan-node-body" id="planStep2Body">Build and publish a public technical artifact proving hands-on proficiency in the missing core tools.</div>
+                </div>
+
+                <!-- Connector 2 -> 3 -->
+                <div class="plan-flow-connector" data-rev aria-hidden="true">
+                  <svg class="connector-arrow" viewBox="0 0 32 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <line x1="2" y1="10" x2="22" y2="10" stroke="var(--red)" stroke-width="2" stroke-dasharray="3 3" />
+                    <polygon points="20,5 30,10 20,15" fill="var(--red)" />
+                  </svg>
+                </div>
+
+                <!-- Node 3: AFTER -->
+                <div class="plan-flow-node" data-rev>
+                  <div class="plan-node-head font-furniture">
+                    <span class="plan-node-badge font-furniture">03</span>
+                    <span class="plan-node-phase">AFTER</span>
+                  </div>
+                  <div class="plan-node-title font-display" id="planStep3Title">RESUBMIT WITH THE REWRITTEN LINES</div>
+                  <div class="plan-node-body" id="planStep3Body">Update resume bullets with quantified impact statements and resubmit through the direct recruiter portal.</div>
                 </div>
               </div>
             </div>
@@ -2893,6 +3265,9 @@
       <div class="footer-colophon font-furniture" data-rev>
         <span data-rev>GAPLINE ENGINE // SPEC.2026 // ALL RIGHTS RESERVED</span>
         <span data-rev>ZERO REMOTE IMAGES // 100% CANVAS ARCHITECTURE</span>
+      </div>
+      <div class="footer-credit font-furniture" data-rev>
+        <span data-rev>Built by Nitin Sharma</span>
       </div>
     </footer>
   </main>
@@ -3471,20 +3846,18 @@
     let ticking = false;
 
     function sync(timestamp) {
+      const winH = window.innerHeight;
       const scrollY = window.pageYOffset || document.documentElement.scrollTop;
-      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const docHeight = document.documentElement.scrollHeight - winH;
       const pageProgress = docHeight > 0 ? Math.max(0, Math.min(1, scrollY / docHeight)) : 0;
 
       setVar('--page-progress', pageProgress.toFixed(4));
-
-      drawHeroStrokes(timestamp);
-      drawContourLines(timestamp);
 
       let currentDarkStageActive = false;
 
       stages.forEach((stage) => {
         const rect = stage.el.getBoundingClientRect();
-        const stageScrollable = rect.height - window.innerHeight;
+        const stageScrollable = rect.height - winH;
         const p = stageScrollable > 0 ? Math.max(0, Math.min(1, -rect.top / stageScrollable)) : 0;
         
         stage.onProgress(p);
@@ -4477,23 +4850,27 @@ Nice To Have:
     const loadingStateCard = document.getElementById('loadingStateCard');
     const resultArtifactCard = document.getElementById('resultArtifactCard');
     const runAnalysisBtn = document.getElementById('runAnalysisBtn');
+    const appWorkspaceGrid = document.querySelector('.app-grid');
 
     function showEmptyState() {
       if (emptyStateCard) emptyStateCard.style.display = 'flex';
       if (loadingStateCard) loadingStateCard.style.display = 'none';
       if (resultArtifactCard) resultArtifactCard.style.display = 'none';
+      if (appWorkspaceGrid) appWorkspaceGrid.classList.remove('has-report');
     }
 
     function showLoadingState() {
       if (emptyStateCard) emptyStateCard.style.display = 'none';
       if (loadingStateCard) loadingStateCard.style.display = 'flex';
       if (resultArtifactCard) resultArtifactCard.style.display = 'none';
+      if (appWorkspaceGrid) appWorkspaceGrid.classList.remove('has-report');
     }
 
     function showResultArtifact() {
       if (emptyStateCard) emptyStateCard.style.display = 'none';
       if (loadingStateCard) loadingStateCard.style.display = 'none';
       if (resultArtifactCard) resultArtifactCard.style.display = 'flex';
+      if (appWorkspaceGrid) appWorkspaceGrid.classList.add('has-report');
     }
 
     // Pipeline Execution Flow with Real Progress Events & Hash Caching
@@ -5125,6 +5502,141 @@ Nice To Have:
     }
 
     /* =============================================================
+       QUOTE ROTATOR ENGINE (UNPINNED NORMAL FLOW BAND)
+       ============================================================= */
+    const ROTATING_QUOTES = [
+      {
+        text: '“Hire character. Train skill.”',
+        author: '— Peter Schutz'
+      },
+      {
+        text: '“The way to get started is to quit talking and begin doing.”',
+        author: '— Walt Disney'
+      },
+      {
+        text: '“Choose a job you love, and you will never have to work a day in your life.”',
+        author: '— often attributed to Confucius'
+      },
+      {
+        text: '“Opportunities don\'t happen. You create them.”',
+        author: '— Chris Grosser'
+      }
+    ];
+
+    let currentQuoteIndex = 0;
+    let quoteRotationTimer = null;
+    let isQuotePaused = false;
+
+    function renderQuote(index, immediate = false) {
+      const card = document.getElementById('quoteCard');
+      const textEl = document.getElementById('quoteText');
+      const authorEl = document.getElementById('quoteAuthor');
+      const dots = document.querySelectorAll('.quote-dot');
+
+      if (!card || !textEl || !authorEl) return;
+
+      const q = ROTATING_QUOTES[index % ROTATING_QUOTES.length];
+
+      if (immediate) {
+        textEl.textContent = q.text;
+        authorEl.textContent = q.author;
+        card.classList.remove('is-fading');
+        dots.forEach((d, i) => d.classList.toggle('active', i === index));
+        return;
+      }
+
+      card.classList.add('is-fading');
+
+      setTimeout(() => {
+        textEl.textContent = q.text;
+        authorEl.textContent = q.author;
+        dots.forEach((d, i) => d.classList.toggle('active', i === index));
+        card.classList.remove('is-fading');
+      }, 500);
+    }
+
+    function nextQuote() {
+      if (isQuotePaused) return;
+      currentQuoteIndex = (currentQuoteIndex + 1) % ROTATING_QUOTES.length;
+      renderQuote(currentQuoteIndex);
+    }
+
+    function initQuoteRotator() {
+      const card = document.getElementById('quoteCard');
+      if (!card) return;
+
+      // Always render initial quote
+      renderQuote(0, true);
+
+      // Check prefers-reduced-motion: render static first quote, no rotation
+      const prefersReducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (prefersReducedMotion) {
+        return;
+      }
+
+      // 4-second cycling (~4000ms) with 500ms fade transition
+      if (quoteRotationTimer) clearInterval(quoteRotationTimer);
+      quoteRotationTimer = setInterval(nextQuote, 4000);
+
+      // Pause rotation on hover
+      card.addEventListener('mouseenter', () => { isQuotePaused = true; });
+      card.addEventListener('mouseleave', () => { isQuotePaused = false; });
+
+      // Pause rotation on focus
+      card.addEventListener('focusin', () => { isQuotePaused = true; });
+      card.addEventListener('focusout', () => { isQuotePaused = false; });
+
+      // Interactive dot clicks
+      const dots = document.querySelectorAll('.quote-dot');
+      dots.forEach((dot) => {
+        dot.addEventListener('click', () => {
+          const idx = parseInt(dot.getAttribute('data-quote-index'), 10);
+          if (!isNaN(idx)) {
+            currentQuoteIndex = idx;
+            renderQuote(currentQuoteIndex);
+          }
+        });
+      });
+    }
+
+    /* =============================================================
+       PRICING NOTIFY FORM ENGINE
+       ============================================================= */
+    function handleProNotify(e) {
+      if (e) e.preventDefault();
+      const input = document.getElementById('proNotifyEmail');
+      const form = document.getElementById('proNotifyForm');
+      const confirmEl = document.getElementById('proNotifyConfirm');
+
+      if (!input || !input.value.trim()) return;
+
+      if (form) form.style.display = 'none';
+      if (confirmEl) confirmEl.style.display = 'inline-flex';
+    }
+
+    function initPricingNotify() {
+      const proNotifyBtn = document.getElementById('proNotifyBtn');
+      const proNotifyForm = document.getElementById('proNotifyForm');
+      const proNotifyCancel = document.getElementById('proNotifyCancel');
+      const proNotifyEmail = document.getElementById('proNotifyEmail');
+
+      if (proNotifyBtn && proNotifyForm) {
+        proNotifyBtn.addEventListener('click', () => {
+          proNotifyBtn.style.display = 'none';
+          proNotifyForm.style.display = 'inline-flex';
+          if (proNotifyEmail) proNotifyEmail.focus();
+        });
+      }
+
+      if (proNotifyCancel && proNotifyForm && proNotifyBtn) {
+        proNotifyCancel.addEventListener('click', () => {
+          proNotifyForm.style.display = 'none';
+          proNotifyBtn.style.display = 'inline-flex';
+        });
+      }
+    }
+
+    /* =============================================================
        INITIALIZATION
        ============================================================= */
     window.addEventListener('DOMContentLoaded', () => {
@@ -5135,6 +5647,8 @@ Nice To Have:
       setupPerAtomLayer();
       assertPosterLineFit();
       assertManifestoRects();
+      initQuoteRotator();
+      initPricingNotify();
       sync();
       requestAnimationFrame(rafHeartbeat);
       restoreSavedState();
